@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Madona & Madhawa — Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root { --accent:#D4AF37; --muted:rgba(255,255,255,.9); }
+
+html,body{
+height:100%;margin:0;background:#1a1a1a;display:flex;justify-content:center;overflow:hidden;
+}
+
+.main-wrapper{
+width:100%;max-width:500px;height:100vh;background:#fff;position:relative;
+overflow-y:hidden;box-shadow:0 0 60px rgba(0,0,0,.8);
+}
+
+.main-wrapper::-webkit-scrollbar{display:none;}
+
+.music-control{
+position:fixed;bottom:25px;right:calc(50% - 230px);
+width:50px;height:50px;background:#fff;border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+z-index:10000;font-size:20px;cursor:pointer;
+box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+@media(max-width:500px){.music-control{right:20px}}
+
+#introVideo{position:absolute;inset:0;background:#000;z-index:9999;}
+#introVideo video{width:100%;height:100%;object-fit:cover;}
+
+#seeInvitationBtn{
+position:absolute;bottom:12%;left:50%;transform:translateX(-50%);
+background:var(--accent);color:#fff;border:none;padding:14px 30px;
+border-radius:40px;font-weight:600;opacity:0;cursor:pointer;
+transition:opacity 1s;
+}
+#seeInvitationBtn.show{opacity:1}
+
+.hero{
+height:100vh;background:url('./Madona_1.JPG') center/cover no-repeat;
+display:flex;align-items:flex-end;justify-content:center;text-align:center;position:relative;
+}
+.hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.4)}
+.hero-inner{position:relative;z-index:2;color:#fff;padding-bottom:80px}
+.couple{font-family:'Great Vibes';font-size:50px}
+.date{letter-spacing:3px;font-size:13px}
+
+.card-wrap{padding:60px 20px;background:#f8f5f7}
+.invitation-card{
+background:url('./background.jpg') center/cover no-repeat;
+border-radius:15px;padding:40px 20px;position:relative;
+}
+.invitation-card::after{
+content:'';position:absolute;inset:0;background:rgba(255,255,255,.92);border-radius:15px;
+}
+.invitation-inner{position:relative;z-index:2;text-align:center}
+.names{font-family:'Great Vibes';font-size:42px;color:var(--accent)}
+
+.ceremony{
+height:70vh;background:url('./madona_2.JPG') center/cover no-repeat;
+display:flex;align-items:center;justify-content:center;color:#fff;position:relative;
+}
+.ceremony::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.ceremony-inner{position:relative;z-index:2;text-align:center}
+
+.countdown{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.countdown div{
+background:rgba(255,255,255,.15);padding:10px;border-radius:8px;min-width:65px;
+}
+
+.map-section{padding:60px 20px;text-align:center}
+.map-container{
+height:350px;border-radius:15px;overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,.1);margin-bottom:15px;
+}
+
+.map-btn{
+display:inline-block;
+margin-bottom:30px;
+padding:10px 18px;
+background:var(--accent);
+color:#fff;
+text-decoration:none;
+border-radius:30px;
+font-size:13px;
+}
+
+.gallery{height:70vh;background:#000;position:relative}
+.gallery img{
+position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+opacity:0;transition:1.2s;
+}
+.gallery img.active{opacity:1}
+
+.wishes{padding:60px 20px;text-align:center}
+.wishes input,.wishes textarea{
+width:100%;padding:12px;margin-bottom:12px;border-radius:10px;border:1px solid #ddd;
+}
+.wishes button{
+width:100%;padding:14px;background:var(--accent);
+color:#fff;border:none;border-radius:35px;font-weight:600;
+}
+</style>
+</head>
+
+<body>
+<div class="main-wrapper" id="mainScrollArea">
+
+<div id="introVideo">
+<video id="weddingIntro" src="./animation.mp4" autoplay muted playsinline></video>
+<button id="seeInvitationBtn">Open Invitation</button>
+</div>
+
+<div class="music-control" id="musicControl">🔊</div>
+
+<section class="hero">
+<div class="hero-inner">
+<div>The Marriage of</div>
+<div class="couple">Madona & Madhawa</div>
+<div class="date">31 · 01 · 2026</div>
+</div>
+</section>
+
+<section class="card-wrap">
+<div class="invitation-card">
+<div class="invitation-inner">
+<p><em>We cordially invite you to join us...</em></p>
+<div class="names">Madona<br>&<br>Madhawa</div>
+<p>
+Daughter of Mr. & Mrs. Nelson<br>
+Son of Late Mr. Basnayake & Mrs. Basnayake
+</p>
+<footer>
+Saturday, January 31, 2026<br>
+06:30 PM onwards<br>
+Hotel Royal Ramesses, Seeduwa
+</footer>
+</div>
+</div>
+</section>
+
+<section class="ceremony">
+<div class="ceremony-inner">
+<h2 style="font-family:'Great Vibes';font-size:36px">Church Mass</h2>
+<p>03:00 PM – St. Lucia’s Cathedral, Kotahena</p>
+<div class="countdown">
+<div><span id="days">0</span><br>Days</div>
+<div><span id="hours">0</span><br>Hrs</div>
+<div><span id="mins">0</span><br>Mins</div>
+<div><span id="secs">0</span><br>Secs</div>
+</div>
+</div>
+</section>
+
+<!-- ✅ LOCATION & DIRECTIONS (ADDED ONLY) -->
+<section class="map-section">
+<h2 style="font-family:'Great Vibes';font-size:36px">Locations & Directions</h2>
+
+<h4>⛪ St. Lucia’s Cathedral, Kotahena</h4>
+<div class="map-container">
+<iframe src="https://www.google.com/maps?q=St%20Lucia’s%20Cathedral%20Kotahena&output=embed"
+width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+</div>
+<a class="map-btn" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=St+Lucia’s+Cathedral+Kotahena">
+Get Directions
+</a>
+
+<h4>🏨 Hotel Royal Ramesses, Seeduwa</h4>
+<div class="map-container">
+<iframe src="https://www.google.com/maps?q=Hotel%20Royal%20Ramesses%20Seeduwa&output=embed"
+width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+</div>
+<a class="map-btn" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Hotel+Royal+Ramesses+Seeduwa">
+Get Directions
+</a>
+</section>
+
+<section class="gallery">
+<img src="./madona_3.JPG" class="active">
+<img src="./madona_4.JPG">
+<img src="./madona_5.JPG">
+<img src="./Madona_1.JPG">
+<img src="./madona_2.JPG">
+</section>
+
+<section class="wishes">
+<h2 style="font-family:'Great Vibes';font-size:36px">Send Wishes</h2>
+<input id="guestName" placeholder="Your Name">
+<textarea id="guestMessage" placeholder="Your message..."></textarea>
+<button id="sendWish">Send Wishes via WhatsApp</button>
+</section>
+
+<audio id="bgAudio" loop>
+<source src="./guitar.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+const intro=document.getElementById('introVideo');
+const video=document.getElementById('weddingIntro');
+const btn=document.getElementById('seeInvitationBtn');
+const audio=document.getElementById('bgAudio');
+const musicBtn=document.getElementById('musicControl');
+
+setTimeout(()=>btn.classList.add('show'),17000);
+video.onended=()=>btn.classList.add('show');
+
+btn.onclick=()=>{
+intro.style.display='none';
+document.getElementById('mainScrollArea').style.overflowY='auto';
+audio.play();
+};
+
+musicBtn.onclick=()=>{
+audio.paused?(audio.play(),musicBtn.textContent='🔊'):(audio.pause(),musicBtn.textContent='🔇');
+};
+
+const targetDate=new Date("January 31, 2026 18:30:00").getTime();
+setInterval(()=>{
+const d=targetDate-Date.now();
+if(d>0){
+days.textContent=Math.floor(d/86400000);
+hours.textContent=Math.floor(d%86400000/3600000);
+mins.textContent=Math.floor(d%3600000/60000);
+secs.textContent=Math.floor(d%60000/1000);
+}},1000);
+
+let i=0;const imgs=document.querySelectorAll('.gallery img');
+setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active')},3500);
+
+document.getElementById("sendWish").onclick=()=>{
+const n=guestName.value,m=guestMessage.value;
+if(n&&m)window.open(`https://wa.me/94754098194?text=Hi Madona %26 Madhawa, I'm ${n}. ${m}`);
+};
+</script>
+</body>
+</html>
